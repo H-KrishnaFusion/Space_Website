@@ -32,7 +32,7 @@ const data = [
         title:'Messier 51a',
         title2:'NGC 5194',
         description:'The Whirlpool Galaxy is a striking grand-design spiral galaxy located about 23 million light-years away in the constellation Canes Venatici. Known as Messier 51 (M51) and cataloged as NGC 5194, it is famous for its well-defined spiral arms and its ongoing interaction with its companion galaxy, NGC 5195.',
-        image:'Galaxies/M51a.jpg'
+        image:'Galaxies/m51a.jpg'
     },
     {
         place:'Sombrero Galaxy',
