@@ -1,0 +1,802 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+.root{
+    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Jost", serif;
+    min-height: 100vh;
+    /* background: url(./background.jpg) no-repeat center center/cover; */
+}
+
+
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999; /* stays behind everything */
+  background: black;
+}
+
+.navbar-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* .navbar .b{
+    background: black;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.2;
+} */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    /* background: transparent; */
+    /* box-shadow: 0 10px 20px rgba(59, 59, 59, 0.5); */
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    animation: slideDown 1s ease;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2rem;
+    max-width: 1600px;
+}
+
+.navbar-logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-logo {
+    white-space: nowrap; /* Keeps text on one line */
+    display: inline-block;
+}
+
+
+.navbar-container .navbar-menu {
+    display: flex;
+    text-align: center;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.navbar-container .navbar-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 3px 20px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: all 0.7s ease;
+    white-space: nowrap;
+}
+
+.navbar-container .navbar-menu li a:hover,
+.navbar-container .navbar-menu li a.active {
+    color: #162530;
+    background: rgba(188, 212, 229, 0.8);
+    border: 2px solid #fff;
+}
+
+.navbar-toggle {
+    display: none;
+    background: transparent;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Responsive Styles */
+@media (max-width: 880px) {
+    .navbar {
+        backdrop-filter: none;
+    }
+
+    .navbar-container .navbar-menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.7rem !important;
+        position: absolute;
+        height: 100vh;
+        width: 250px;
+        top: 0;
+        right: 0;
+        padding: 5rem 1.5rem;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar-container .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: block;
+        z-index: 999;
+    }
+
+    .navbar-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .navbar-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 1rem;
+    }
+
+    .navbar-logo {
+        font-size: 1.7rem;
+    }
+
+    .navbar-container .navbar-menu li a {
+        font-size: 1.2rem;
+        padding: 3px 15px;
+    }
+}
+
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+  .hero {
+      text-align: center;
+      padding: var(--space-32);
+    }
+
+    .hero-title {
+      /* font-size: clamp(36px, 8vw); */
+      /* font-size: 550; */
+      font-size: larger;
+      font-family: orbitron;
+      font-weight: 700;
+      background: linear-gradient(135deg, #66f0ff, #32b8c6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow-pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.4); }
+    }
+
+    .hero-subtitle {
+      font-size: 2.5rem;
+      margin-bottom:32px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 25px;
+      border: 2px solid white;
+      border-radius: 16px 5px;
+      margin-top: 5%;
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+    }
+
+    .hero-cta:hover {
+      background: var(--color-primary);
+      color: var(--color-background);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow-lg);
+    }
+
+
+.hero{
+    text-align: center;
+    padding:100px 20px;
+    color: white;
+    height: 600px;
+}
+
+.hero h1{
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+
+.hero p{
+    font-size:2rem;
+    margin-bottom: 30px;
+}
+
+.image-wrapper{
+    flex: 1;
+    max-width: 40%;
+}
+
+ .image-wrapper img{
+    width: 100%;
+    opacity: 0;
+    margin-top: 60px;
+    margin-left: -60px;
+visibility: hidden;
+   /* transform: translate(-100px, 25px); */
+   transform: translate3d(-100px, 25px, 0);
+
+
+   transition: all 1.5s ease;
+ }
+ 
+ .left .rectangle{
+position: absolute;
+visibility: hidden;
+top:23%;
+left: 18vw;
+width: 75vw;
+height: 50vh;
+/* background: black; */
+clip-path: polygon(25% 0%, 100% 0, 100% 73%, 89% 100%, 0 100%, 0 35%);
+/* background: rgba(9, 0, 46, 0.304); */
+background: #354191;
+transform: translateX(-100%);
+transition: all 1s ease;
+z-index: -1;
+ }
+
+.explore-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    /* padding: 100px ; */
+    overflow: hidden;
+}
+
+ .explore-text{
+    flex: 1;
+    color: white;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+ }
+
+.sun1 {
+  /* text-align: left; */
+  position: relative;
+  top: -1rem;
+  left: -9rem;
+
+  /* position: relative; */
+  /* padding-left: 10rem; */
+}
+
+ .explore-item.active .image-wrapper img{
+opacity: 1;
+visibility: visible;
+transform: translateX(-10px);
+transition-delay:0.3s ;
+ }
+ 
+
+ .explore-item.active .rectangle {
+  transform: translateX(0);
+  transition-delay: 1s;
+visibility: visible;
+}
+
+
+.explore-item.active .explore-text {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 2s;
+}
+
+
+/* ===== MOON SECTION ===== */
+
+.right .image-wrapper {
+  flex: 1;
+  max-width: 40%;
+  order: 2; /* Image on right side */
+}
+
+.right .image-wrapper img {
+  width: 100%;
+  visibility: hidden;
+    margin-top: 20px;
+
+  opacity: 0;
+  margin: 0 15%;
+ transform: translate3d(100px, 25px, 50px);
+  transition: all 1.5s ease;
+}
+
+.right .rectangle {
+  position: absolute;
+  visibility: hidden;
+  top: 21%;
+  right:17vw ;
+  width: 75vw;
+height: 50vh;
+  opacity: 0;
+  background: black;
+  /* clip-path: polygon(25% 0%, 100% 0, 100% 73%, 85% 100%, 0 100%, 0 35%); */
+  clip-path: polygon(75% 100%, 0% 100%, 0% 27%, 15% 0%, 100% 0%, 100% 65%);
+  transform: translateX(100%); /* opposite direction */
+  transition: all 1s ease;
+  z-index: -1;
+}
+
+.right .explore-text {
+  text-align: right;
+  flex: 1;
+  color: white;
+  padding-left: 10%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+/* Active animation */
+.right.active .image-wrapper img {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0px);
+  transition-delay: 0.3s;
+}
+
+.right.active .rectangle {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 1s;
+}
+
+.right.active .explore-text {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 2s;
+}
+
+.sun{
+    max-width:155%;
+     margin-left: -100px;
+     margin-top:-90px;
+}
+
+@keyframes spinClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.right .g-rect{
+  /* background: rgba(22, 0, 102, 0.382); */
+  background: rgba(9, 0, 46, 0.304);
+
+
+}
+.left .sun-rect{
+  background: rgba(101, 0, 0, 0.304);
+
+}
+.right .moon-rect{
+  background: rgba(53, 51, 61, 0.304);
+
+}
+.left .earth-rect{
+  /* background: rgba(9, 0, 46, 0.304); */
+  background: #1518767d
+}
+
+
+/* Responsive Hero Section */
+.hero h1 {
+    font-size: 5rem;
+}
+.hero p {
+    font-size: 2rem;
+}
+
+@media (min-width: 481px) and (max-width: 1023px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    .hero p {
+        font-size: 1.5rem;
+    }
+    .navbar-container {
+        padding: 0 1.5rem;
+    }
+    .navbar-logo {
+        font-size: 2rem;
+    }
+    .navbar-container .navbar-menu li a {
+        font-size: 1.3rem;
+        padding: 3px 20px;
+    }
+    .explore-item {
+        gap: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero h1 {
+        font-size: 5rem;
+    }
+    .hero p {
+        font-size: 2rem;
+    }
+    .navbar-container {
+        padding: 0 2rem;
+    }
+    .navbar-logo {
+        font-size: 2rem;
+    }
+    .navbar-container .navbar-menu li a {
+        font-size: 1.3rem;
+        padding: 3px 20px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 1rem;
+    }
+    .navbar-logo {
+        font-size: 1rem;
+    }
+    .navbar-container .navbar-menu li a {
+        font-size: 1.2rem;
+        padding: 3px 15px;
+    }
+}
+
+
+
+/* ===== Space Missions Section ===== */
+
+.mission-track {
+  display: flex; /* important for scrolling */
+  gap: 40px;
+  animation: scrollLeft 22s linear infinite;
+  will-change: transform;
+  padding-left: 20px;
+}
+
+.space-missions {
+  margin-top: 5rem;
+  overflow: hidden; /* ✅ stops scrollbar */
+  margin-top: 5rem;
+  width: 100%;
+}
+
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+
+
+.space-missions h3{
+  color: white;
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 700;
+}
+
+.space-missions .mission {
+  flex: 0 0 calc(25% - 40px); /* 4 per row */
+  width: 20rem;
+  height: 27rem; 
+  max-height: 820px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  background: rgba(6,8,20,0.25); 
+  backdrop-filter: blur(6px);
+    transition: all 1s ease;
+
+}
+
+
+.space-missions .mission img {
+  width: 100%;
+  height: 100%;
+   object-fit: cover;  
+    object-position: center;
+  display: block;
+  filter: brightness(0.65); 
+  transition: transform 0.8s ease;
+  will-change: transform, opacity;
+}
+
+/* centered text at bottom */
+.space-missions .mission-info {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 28px;
+  width: calc(100% - 80px);
+  text-align: center;
+  color: #fff;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Title and description */
+.space-missions .mission-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  letter-spacing: 0.6px;
+  text-transform: none;
+  color: #eaf6ff;
+  text-shadow: 0 4px 24px rgba(34, 188, 255, 0.08);
+}
+.space-missions .mission-info p {
+  margin: 0;
+  font-size: 1rem;
+  color: #cfe6ff;
+  opacity: 0.95;
+}
+
+.space-missions .mission:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0px 30px rgba(51, 51, 51, 0.464);
+    /* transition: all 1s ease; */
+  }
+
+
+
+
+  /* =========================================
+   RESPONSIVE & SCALING UPDATES
+   Add to the bottom of style.css
+   ========================================= */
+
+/* 1. Global Overflow Fix 
+   Prevents side-scrolling issues caused by your animations 
+*/
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* 2. Tablet Scaling (Max-Width: 1024px) 
+   Slightly reduce sizes but keep horizontal layout where possible 
+*/
+@media screen and (max-width: 1024px) {
+    .hero {
+        height: auto;
+        padding: 150px 20px 80px;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem; /* Scaled down from 5rem */
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+    }
+
+    /* Adjust Planet Sections for Tablet */
+    .explore-item {
+        gap: 20px;
+        padding: 50px 0;
+    }
+
+    .image-wrapper {
+        max-width: 45%; /* Give images slightly more room */
+    }
+
+    .explore-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .explore-text p {
+        font-size: 0.95rem;
+    }
+
+    /* Space Missions Title */
+    .space-missions h3 {
+        font-size: 4rem; /* Scaled down from 7rem */
+    }
+}
+
+/* 3. Mobile Layout (Max-Width: 768px)
+   Stacks elements vertically and adjusts the decorative rectangles
+*/
+@media screen and (max-width: 768px) {
+    
+    /* Navbar Adjustments */
+    .navbar {
+        padding: 0 10px;
+    }
+    
+    .navbar-logo {
+        font-size: 1.5rem;
+    }
+
+    /* Hero Section Mobile */
+    .hero {
+        padding-top: 120px;
+        height: auto;
+        min-height: 80vh; /* Ensure it covers screen */
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+
+    /* EXPLORE SECTIONS - STACKING LOGIC */
+    .explore-item {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 20px;
+        gap: 30px;
+    }
+
+    /* Fix image sizing */
+    .image-wrapper, 
+    .right .image-wrapper {
+        max-width: 80%; /* Image takes up more width on mobile */
+        margin: 0 auto; /* Center it */
+        flex: none;
+    }
+
+    /* Reset specific margins for the Sun/Earth images */
+    .image-wrapper img,
+    .right .image-wrapper img,
+    .sun {
+        margin: 0;
+        transform: translate3d(0, 20px, 0); /* Simplify animation start point */
+        max-width: 100%;
+    }
+
+    /* Reset order for "Right" sections so Image is always on top of text */
+    .right .image-wrapper {
+        order: 0; 
+    }
+
+    /* Text Adjustments */
+    .explore-text, 
+    .right .explore-text {
+        text-align: center;
+        padding: 0;
+        width: 100%;
+    }
+
+    /* Fix the specific offsets you had for the Sun text */
+    .sun1 {
+        top: 0;
+        left: 0;
+    }
+
+    /* RECTANGLE DECORATIONS ON MOBILE 
+       Resize them to fit behind the stacked content 
+    */
+    .left .rectangle, 
+    .right .rectangle {
+        width: 90vw;
+        height: 400px;
+        top: 10%;
+        left: 5vw;
+        right: auto;
+        clip-path: none; /* Remove complex clipping to prevent cutting off */
+        border-radius: 20px; /* Soften edges instead */
+        opacity: 0.2; /* Lower opacity so text is readable */
+    }
+
+    /* Space Missions Mobile */
+    .space-missions {
+        margin-top: 2rem;
+    }
+
+    .space-missions h3 {
+        font-size: 2.5rem; /* Much smaller to fit screen */
+        margin-bottom: 20px;
+    }
+
+    .mission-track {
+        gap: 20px;
+        padding-left: 10px;
+    }
+
+    .space-missions .mission {
+        width: 16rem; /* Smaller cards */
+        height: 22rem;
+        flex: 0 0 16rem;
+    }
+}
+
+/* 4. Small Mobile (Max-Width: 400px) 
+   For very narrow screens like older iPhones/SE
+*/
+@media screen and (max-width: 400px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .explore-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-cta {
+        width: 100%; /* Full width button */
+        padding: 15px;
+    }
+}

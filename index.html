@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space-Dream</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<canvas id="starfield"></canvas>
+    
+    <nav class="navbar">
+        <!-- <div class="b"></div> -->
+<video autoplay muted loop playsinline class="navbar-video">
+    <source src="ga.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">Space-Adv</a>
+            <button class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="./Planets/Planets.html">Explore Planets</a></li>
+                <li><a href="./Mooon/moon.html">Moons</a></li>
+                <li><a href="./dist/galaxy.html">Galaxies</a></li>
+                <li><a href="#">Out Story</a></li>
+                <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+<!-- <div class="container">
+    <div class="left-section">
+        EARTH SECTION
+        <div class="content-block"></div>
+    </div>
+</div> -->
+
+<!-- <section class="hero">
+    <h1>
+        Welcome Explorer 
+    </h1>
+    <p>Embark on a cosmic adventure like never Before.</p>
+    <button class="scroll-btn">Lets's Begin</button>
+</section> -->
+
+<section class="hero">
+    <h1 class="hero-title">Welcome Explorer</h1>
+    <p class="hero-subtitle">Journey through the cosmos, discover planets, moons, stars and Galaxy!</p>
+    <a href="#explore" class="hero-cta">Begin Your Journey →</a> 
+  </section>
+
+  
+
+<!-- Earth Section -->
+<section id="explore">
+  <div class="explore-item left reveal">
+    <!-- Rectangle appears behind everything -->
+    <div class="rectangle earth-rect"></div>
+
+    <!-- Image wrapper (Earth) -->
+    <div class="image-wrapper">
+      <img src="Images/e1.png" alt="Planet Earth" class="earth-img">
+    </div>
+
+    <!-- Text content -->
+    <div class="explore-text ">
+      <h2>Planet Earth</h2>
+      <p>
+        Our Home Planet — rich with life, water, and wonders. Discover the only known world to sustain life.
+      </p>
+      <a href="./Planets/Planets.html" class="explore-btn">Explore Planet ↗</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Moon Section -->
+<section id="explore-moon">
+  <div class="explore-item right right">
+    <!-- Rectangle -->
+    <div class="rectangle moon-rect"></div>
+
+    <!-- Image wrapper -->
+    <div class="image-wrapper">
+      <img src="Images/moon.png" alt="Moon" class="moon-img">
+    </div>
+
+    <!-- Text content -->
+    <div class="explore-text">
+      <h2>The Moon</h2>
+      <p>
+        Earth’s only natural satellite — a silent guardian reflecting sunlight in the night sky.
+        Explore its craters, mysteries, and surface like never before.
+      </p>
+      <a href="./Mooon/moon.html" class="explore-btn">Explore the Moon ↗</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- sun Section -->
+<section id="explore-sun">
+  <div class="explore-item left reveal">
+    <!-- Rectangle appears behind everything -->
+    <div class="rectangle sun-rect"></div>
+
+    <!-- Image wrapper (Earth) -->
+    <div class="image-wrapper sun">
+      <img src="Images/sun1.png" alt="Planet Earth" class="sun-img">
+    </div>
+
+    <!-- Text content -->
+    <div class="explore-text sun1">
+      <h2>Planet Earth</h2>
+      <p>
+        Our Home Planet — rich with life, water, and wonders. Discover the only known world to sustain life.
+      </p>
+      <a href="./Planets/Planets.html" class="explore-btn">Explore Planet ↗</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Galaxy Section -->
+<section id="explore-galaxy">
+  <div class="explore-item right right">
+    <!-- Rectangle -->
+    <div class="rectangle g-rect"></div>
+
+    <!-- Image wrapper -->
+    <div class="image-wrapper">
+<div class="rotater">
+      <img src="Images/Galaxy.png" alt="Milky-Way" class="galaxy-img">
+
+</div>
+    </div>
+
+    <!-- Text content -->
+    <div class="explore-text">
+      <h2>The Moon</h2>
+      <p>
+        Earth’s only natural satellite — a silent guardian reflecting sunlight in the night sky.
+        Explore its craters, mysteries, and surface like never before.
+      </p>
+      <a href="./dist/galaxy.html" class="explore-btn">Explore the Galaxies ↗</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="space-missions" class="space-missions">
+<h3>Space Missions</h3>
+ <div class="mission-track">
+
+  <!-- Mission 1-->
+  <article class="mission ">
+    <img src="Missions/apollo1.png" alt="Apollo 11">
+    <div class="mission-info">
+      <h3>Apollo 11</h3>
+      <p>First humans landed on the Moon — 1969</p>
+    </div>
+  </article>
+
+  <!-- Mission 2 -->
+  <article class="mission ">
+    <img src="Missions/voyager.png" alt="Voyager 1">
+    <div class="mission-info">
+      <h3>Voyager 1</h3>
+      <p>Farthest spacecraft from Earth — 1977</p>
+    </div>
+  </article>
+
+  <!-- Mission 3 -->
+  <article class="mission ">
+    <img src="Missions/space-station.png" alt="ISS">
+    <div class="mission-info">
+      <h3>International Space Station</h3>
+      <p>Humans living in orbit — 1998–Present</p>
+    </div>
+  </article>
+
+  <!-- Mission 4 -->
+  <article class="mission ">
+    <img src="Missions/Artemis Program.png" alt="Artemis">
+    <div class="mission-info">
+      <h3>Artemis Program</h3>
+      <p>First step to returning humans to the Moon — unmanned lunar orbit test — 2024</p>
+    </div>
+  </article>
+
+ <!-- Mission 5 -->
+  <article class="mission ">
+    <img src="Missions/Hubble Space Telescope.jpg" alt="Artemis">
+    <div class="mission-info">
+      <h3>Hubble Space Telescope</h3>
+      <p>Revealed galaxies, black holes & expanding universe — still active</p>
+    </div>
+  </article>
+
+   <!-- Mission 6 -->
+  <article class="mission ">
+    <img src="Missions/Curiosity Rover (Mars).png" alt="Artemis">
+    <div class="mission-info">
+      <h3>Curiosity Rover (Mars)</h3>
+      <p>Searching for signs of ancient life on Mars since 2012</p>
+    </div>
+  </article>
+
+   <!-- Mission 7 -->
+  <article class="mission ">
+    <img src="Missions/Perseverance Rover (Mars).png" alt="Artemis">
+    <div class="mission-info">
+      <h3>Perseverance Rover (Mars)</h3>
+      <p>Collecting samples, launched Ingenuity helicopter on Mars</p>
+    </div>
+  </article>
+
+   <!-- Mission 8 -->
+  <article class="mission ">
+    <img src="Missions/James Webb Space Telescope (JWST).png" alt="Artemis">
+    <div class="mission-info">
+      <h3>James Webb Space Telescope (JWST)</h3>
+      <p>Observing earliest galaxies — breakthrough infrared telescope</p>
+    </div>
+  </article>
+
+   <!-- Mission 9 -->
+  <article class="mission ">
+    <img src="Missions/New Horizons.png" alt="Artemis">
+    <div class="mission-info">
+      <h3>New Horizons</h3>
+      <p>First close-up flyby of Pluto & Kuiper Belt exploration</p>
+    </div>
+  </article>
+
+   <!-- Mission 10 -->
+  <article class="mission ">
+    <img src="Missions/Chandrayaan-2.png" alt="Artemis">
+    <div class="mission-info">
+      <h3>Chandrayaan-2</h3>
+      <p>India’s lunar mission</p>
+    </div>
+  </article>
+
+
+</div>
+</section>
+
+<section class="solar-system-3d">
+    <div class="sun"></div>
+
+    <div class="orbit mercury"><div class="planet mercury"></div></div>
+    <div class="orbit venus"><div class="planet venus"></div></div>
+    <div class="orbit earth"><div class="planet earth"></div></div>
+    <div class="orbit mars"><div class="planet mars"></div></div>
+    <div class="orbit jupiter"><div class="planet jupiter"></div></div>
+    <div class="orbit saturn"><div class="planet saturn"></div></div>
+    <div class="orbit uranus"><div class="planet uranus"></div></div>
+    <div class="orbit neptune"><div class="planet neptune"></div></div>
+</section>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

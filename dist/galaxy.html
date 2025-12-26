@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Timed Cards Opening</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+  
+  <body>
+
+
+
+<nav class="navbar">
+    <video autoplay muted loop playsinline class="navbar-video">
+        <source src="../ga.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="navbar-container">
+        <a href="../index.html" class="navbar-logo">Space-Adv</a>
+
+        <button class="navbar-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="navbar-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../Planets/Planets.html">Explore Planets</a></li>
+            <li><a href="../Mooon/moon.html">Moons</a></li>
+            <li><a href="../dist/galaxy.html">Galaxies</a></li>
+            <li><a href="#">Out Story</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+    <div id="demo"></div>
+
+    <div class="details" id="details-even">
+      <div class="place-box">
+        <div class="text">Milky Way Galaxy</div>
+      </div>
+      <div class="title-box-1"><div class="title-1">Milky</div></div>
+      <div class="title-box-2"><div class="title-2">Way</div></div>
+      <div class="desc">
+        The Milky Way Galaxy is our home in the vast universe, a sprawling collection of stars, planets, and cosmic wonders. It's a breathtaking barred spiral galaxy filled with nebulae, star clusters, and swirling arms that shine brightly against the darkness of space
+      </div>
+    </div>
+
+    <div class="details" id="details-odd">
+      <div class="place-box">
+        <div class="text"></div>
+      </div>
+      <div class="title-box-1"><div class="title-1"></div></div>
+      <div class="title-box-2"><div class="title-2"></div></div>
+      <div class="desc">
+
+      </div>
+    </div>
+
+    <div class="pagination" id="pagination">
+      <div class="arrow arrow-left">
+  -
+      </div>
+      <div class="arrow arrow-right">
+      +
+      </div>
+      <div class="progress-sub-container" >
+        <div class="progress-sub-background" >
+            <div class="progress-sub-foreground" ></div>
+        </div>
+    </div>
+    <div class="slide-numbers" id="slide-numbers"></div>
+    </div>
+
+    <div class="cover" ></div>
+   
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'></script>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

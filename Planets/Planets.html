@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planets Ring</title>
+
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+    body {
+        margin: 0;
+        background: black;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+    #globe-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin-left: -50%;
+        margin-top: -2.5%;
+    }
+
+    /* Controls */
+    .controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 20px;
+        z-index: 10;
+    }
+    .btn {
+        padding: 10px 20px;
+        border: 2px solid white;
+        color: white;
+        background: rgba(0, 0, 0, 0.05);
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        backdrop-filter: blur(6px);
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    /* Text overlay */
+    #planet-text {
+        position: absolute;
+        top: 15%;
+        left: 45%;
+        bottom: 50px;
+        width: 50%;
+        text-align: center;
+        text-wrap: 100px;
+        color: white;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(20px);
+        padding:25px 25px 35px 35px;
+        border-radius: 10px;
+
+
+background: rgba(48, 48, 48, 0.1);  /* semi-transparent white */
+    backdrop-filter: blur(10px);           /* blur behind the element */
+    -webkit-backdrop-filter: blur(10px);   /* for Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* subtle white border */
+    box-shadow: 0 4px 30px rgba(67, 67, 67, 0.1);  /* optional soft shadow */
+
+
+    }
+    #planet-text h2 {
+        font-size: 2rem;
+        margin: 0;
+        
+    }
+    #planet-text p {
+        font-size: 1.2rem;
+        margin: 5px 0 0 0;
+    }
+
+
+
+
+/* Navar */
+.navbar-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 100%;
+    position: sticky;
+    margin-top: -22px;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    animation: slideDown 1s ease;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2rem;
+    max-width: 1600px;
+}
+
+.navbar-logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.navbar-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 3px 20px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: all 0.7s ease;
+    white-space: nowrap;
+}
+
+.navbar-menu li a:hover,
+.navbar-menu li a.active {
+    color: #162530;
+    background: rgba(188, 212, 229, 0.8);
+    border: 2px solid #fff;
+}
+
+.navbar-toggle {
+    display: none;
+    background: transparent;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+/* RESPONSIVE */
+@media (max-width: 880px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.7rem;
+        position: absolute;
+        height: 100vh;
+        width: 250px;
+        top: 0;
+        right: 0;
+        padding: 5rem 1.5rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    }
+    .navbar-menu.active {
+        display: flex;
+    }
+    .navbar-toggle {
+        display: block;
+        z-index: 999;
+    }
+    .navbar-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .navbar-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .navbar-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 1rem;
+    }
+    .navbar-logo {
+        font-size: 1.7rem;
+    }
+    .navbar-menu li a {
+        font-size: 1.2rem;
+        padding: 3px 15px;
+    }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+
+
+
+</style>
+```
+
+</head>
+<body>
+
+
+
+    
+<nav class="navbar">
+    <video autoplay muted loop playsinline class="navbar-video">
+        <source src="../ga.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="navbar-container">
+        <a href="../index.html" class="navbar-logo">Space-Adv</a>
+
+        <button class="navbar-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="navbar-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="Planets.html">Explore Planets</a></li>
+            <li><a href="../Mooon/moon.html">Moons</a></li>
+            <li><a href="../dist/galaxy.html">Galaxies</a></li>
+            <li><a href="#">Out Story</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div id="globe-container"></div>
+
+<div id="planet-text">
+    <h2>Planet Name</h2>
+    <p>Planet description goes here...</p>
+</div>
+
+<div class="controls">
+    <button class="btn" id="leftBtn">◀</button>
+    <button class="btn" id="rightBtn">▶</button>
+</div>
+
+<script>
+/*------------------------
+  SCENE + CAMERA + RENDERER
+------------------------*/
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+    75, window.innerWidth / window.innerHeight, 0.1, 1000
+);
+camera.position.z = 12;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById("globe-container").appendChild(renderer.domElement);
+
+/*------------------------
+  LIGHTS
+------------------------*/
+const softLight = new THREE.DirectionalLight(0xffffff, 0.45);
+softLight.position.set(-3, -2, 2);
+scene.add(softLight);
+
+const softLight2 = new THREE.DirectionalLight(0xffffff, 0.35);
+softLight2.position.set(3, 2, 3);
+scene.add(softLight2);
+
+const ambient = new THREE.AmbientLight(0xffffff, 0.28);
+scene.add(ambient);
+
+/*------------------------
+  PLANETS DATA
+------------------------*/
+const planetImages = [
+    "Images/mercury.jpg",
+    "Images/venus.jpg",
+    "Images/earth.jpg",
+    "Images/mars.jpg",
+    "Images/jupiter.jpg"
+];
+const planetNames = ["Venus", "Earth", "Mars", "Jupiter","Mercury"];
+const planetDescriptions = [
+    "Venus, often called Earth’s twin due to its similar size and mass, formed roughly 4.5 billion years ago from the solar nebula. Unlike Earth, Venus developed a thick, toxic atmosphere dominated by carbon dioxide, with clouds of sulfuric acid, creating extreme greenhouse conditions. Its surface temperatures can reach up to 465°C, hot enough to melt lead, and its atmospheric pressure is about 92 times that of Earth. Early volcanic activity shaped the planet’s terrain, creating vast plains, highland regions, and large volcanic structures such as Maxwell Montes. Venus rotates very slowly and in the opposite direction of most planets, resulting in a day longer than its year. Despite its harsh conditions, evidence suggests that liquid water may have existed on Venus billions of years ago, hinting at a potentially more temperate early environment. Today, Venus remains a hostile, enigmatic world, shrouded in dense clouds, and continues to be a key focus in studies of planetary evolution and climate extremes.",
+    "Earth, our home planet, formed approximately 4.54 billion years ago from the solar nebula, a vast cloud of gas and dust left over after the birth of the Sun. Through the process of accretion, particles collided and stuck together, gradually forming planetesimals that merged into a proto-Earth. During its early years, Earth was a molten, inhospitable world, frequently bombarded by asteroids and comets, which contributed to its volatile surface and delivered essential water and organic molecules. As the planet cooled, a solid crust formed, and volcanic activity released gases that created Earth’s first atmosphere, dominated by carbon dioxide, methane, ammonia, and water vapor, but lacking free oxygen. Around 4 billion years ago, the first oceans began to form as water vapor condensed, providing a cradle for the earliest known life forms. Microbial life, particularly prokaryotes such as cyanobacteria, began to thrive in these primordial oceans, gradually altering the atmosphere through photosynthesis, releasing oxygen in what became known as the Great Oxidation Event around 2.4 billion years ago.",
+    "Mars, known as the Red Planet due to its iron-rich surface, formed approximately 4.6 billion years ago from the remnants of the solar nebula. Its thin atmosphere, composed mainly of carbon dioxide, creates extreme temperature fluctuations, ranging from -125°C near the poles to 20°C at the equator. Early in its history, Mars had liquid water, forming rivers, lakes, and possibly a northern ocean, as evidenced by dry riverbeds and mineral deposits. Volcanic activity, such as Olympus Mons—the tallest volcano in the solar system—and tectonic movements shaped much of its surface. Mars has two small moons, Phobos and Deimos, thought to be captured asteroids. Over billions of years, the planet lost much of its atmosphere, making its surface cold and dry, yet it remains a prime target for exploring past habitability. Robotic missions continue to investigate its geology, climate, and potential for life, keeping Mars at the forefront of planetary science and human exploration goals.",
+    "Jupiter, the largest planet in the solar system, formed around 4.5 billion years ago from the protoplanetary disk surrounding the early Sun. Composed mainly of hydrogen and helium, Jupiter is a gas giant with no solid surface, featuring a dense core surrounded by thick layers of gas. Its rapid rotation produces a flattened shape and creates powerful atmospheric storms, including the Great Red Spot, a massive storm persisting for centuries. Jupiter’s strong magnetic field, the largest of any planet, traps charged particles and generates intense radiation belts. The planet also hosts a complex system of rings and at least 95 moons, including the four massive Galilean moons: Io, Europa, Ganymede, and Callisto. Jupiter’s immense gravity influenced the formation and evolution of the solar system, helping to shape asteroid belts and protect inner planets. Today, it remains a symbol of the dynamic, turbulent processes that govern giant planets.",
+    "Mercury, the smallest planet in the solar system, formed around 4.5 billion years ago close to the Sun from high-temperature materials in the inner solar nebula. Its surface is rocky and heavily cratered, resembling Earth’s Moon, shaped by ancient volcanic activity and impacts from asteroids and comets. Mercury has an extremely thin atmosphere, called an exosphere, composed of oxygen, sodium, hydrogen, helium, and potassium, which provides little protection from the Sun’s intense radiation. Temperatures vary dramatically, reaching up to 430°C during the day and dropping to -180°C at night due to the lack of a substantial atmosphere. Mercury rotates slowly on its axis, completing three rotations for every two revolutions around the Sun. Despite its small size and proximity to the Sun, Mercury has a large iron-rich core, generating a weak magnetic field. Today, Mercury is a key target for studying planetary formation and the effects of extreme solar radiation."
+];
+
+const planetSize = 2.1;
+const radius = 8;
+const planets = [];
+let angleOffset = 0;
+let currentIndex = 0;
+
+/*------------------------
+  CREATE PLANET
+------------------------*/
+function createPlanet(img) {
+    const texture = new THREE.TextureLoader().load(img);
+    const geo = new THREE.SphereGeometry(planetSize, 50, 50);
+
+    const mat = new THREE.MeshStandardMaterial({
+        map: texture,
+        roughness: 0.8,
+        metalness: 0.1
+    });
+
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+    return mesh;
+}
+
+/*------------------------
+  PLACE PLANETS IN A CIRCLE
+------------------------*/
+planetImages.forEach((img, i) => {
+    const angle = (i * 360 / planetImages.length) * Math.PI / 180;
+
+    const x = radius * Math.cos(angle);
+    const z = radius * Math.sin(angle);
+
+    const planet = createPlanet(img);
+    planet.position.set(x, 0, z);
+    planet.lookAt(0, 0, 0);
+
+    planets.push(planet);
+});
+
+/*------------------------
+  RING ROTATION
+------------------------*/
+function updateRingRotation() {
+    const count = planets.length;
+    planets.forEach((planet, i) => {
+        const angle = ((i * 360) / count + angleOffset) * Math.PI / 180;
+
+        planet.position.x = radius * Math.cos(angle);
+        planet.position.z = radius * Math.sin(angle);
+        planet.lookAt(0, 0, 0);
+    });
+}
+
+/*------------------------
+  PLANET TEXT ANIMATION
+------------------------*/
+const textContainer = document.getElementById("planet-text");
+
+function showPlanetText(index) {
+    gsap.to(textContainer, {
+        duration: 0.5,
+        opacity: 0,
+        y: -20,
+        ease: "power2.in",
+        onComplete: () => {
+            // update text
+            textContainer.innerHTML = `<h2>${planetNames[index]}</h2>
+                                       <p>${planetDescriptions[index]}</p>`;
+            // fade in
+            gsap.fromTo(textContainer, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+            );
+        }
+    });
+}
+
+// initial text
+showPlanetText(currentIndex);
+
+/*------------------------
+  BUTTON CLICK ANIMATION
+------------------------*/
+document.getElementById("leftBtn").onclick = () => {
+    currentIndex = (currentIndex - 1 + planets.length) % planets.length;
+    rotateRing(1);
+    showPlanetText(currentIndex);
+};
+
+document.getElementById("rightBtn").onclick = () => {
+    currentIndex = (currentIndex + 1) % planets.length;
+    rotateRing(-1);
+    showPlanetText(currentIndex);
+};
+
+function rotateRing(dir) {
+    gsap.to(
+        { ang: angleOffset },
+        {
+            ang: angleOffset + dir * (360 / planets.length),
+            duration: 1.4,
+            ease: "power3.out",
+            onUpdate() {
+                angleOffset = this.targets()[0].ang;
+                updateRingRotation();
+            }
+        }
+    );
+}
+
+/*------------------------
+  ANIMATION LOOP
+------------------------*/
+function animate() {
+    requestAnimationFrame(animate);
+    planets.forEach(p => p.rotation.y += 0.003);
+    renderer.render(scene, camera);
+}
+animate();
+
+/*------------------------
+  RESPONSIVE FIX
+------------------------*/
+window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+
+<script src="planet.js"></script>
+
+
+</body>
+</html>
